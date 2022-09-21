@@ -81,6 +81,16 @@ export class SignupService {
     const formatBirthdayString = formatBirthday.toISOString();
     const date = new Date();
 
+    const typeUserCommon = {
+      Type: "user",
+      id: 1,
+    };
+
+    const typeUserAdmin = {
+      Type: "admin",
+      id: 2,
+    };
+
     const user = await AuthenticateUser.create({
       data: {
         firstName: data.firstName,
@@ -102,12 +112,15 @@ export class SignupService {
         },
         userType: {
           connectOrCreate: {
-            create: {
-              Type: "user",
-              id: 1,
-            },
+            create:
+              data.email === process.env.ADMIN_EMAIL
+                ? typeUserAdmin
+                : typeUserCommon,
             where: {
-              id: 1,
+              id:
+                data.email === process.env.ADMIN_EMAIL
+                  ? typeUserAdmin.id
+                  : typeUserCommon.id,
             },
           },
         },

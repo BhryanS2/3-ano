@@ -1,0 +1,51 @@
+# Usuários
+--
+- nome: string
+- sobrenome: string
+- email: string
+- senha: string
+- data_nascimento: date
+- cpf: string
+- id: int
+---
++ login(): string
++ cadastrar(): boolean
++ editar(): boolean
++ excluir(): boolean
+
+# Perfil
+--
+- id: int
+- nível: int
+- experiência: int
+- usuário_id: int
+---
++ subir_nível(): boolean
++ adicionar_experiência(): boolean
+
+# abstract class: Abs_desafio 
+--
+- id: int
+---
++ criar(): boolean
++ editar(): boolean
++ excluir(): boolean
+
+
+# Desafio
+--
+- tipo: string
+- descrição: string
+- qtd_experiência: int
+---
++ completar(): boolean
++ iniciar(): boolean
+
+
+# Desafio_completado
+--
+- data: date
+- desafio_id: int
+- usuário_id: int
+---
+

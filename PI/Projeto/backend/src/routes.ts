@@ -1,6 +1,8 @@
 import { Router } from "express";
+
 import { CreateChallengeController } from "./controllers/challenge/createChallengeController";
 import { GetChallengeController } from "./controllers/challenge/getChallengeController";
+import { EditChallengeController } from "./controllers/challenge/editChallengeController";
 
 import { DeleteManyDbController } from "./controllers/deleteManyDbController";
 
@@ -48,6 +50,11 @@ router.get(
 // challenges
 router.get("/challenges", new GetChallengeController().handle);
 router.post("/challenges", new CreateChallengeController().handle);
+router.put(
+  "/challenges",
+  ensureAuthenticated,
+  new EditChallengeController().handle
+);
 
 router.get("/", (req, res) => {
   res.send("Hello World!");
