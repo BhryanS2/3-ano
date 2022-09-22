@@ -63,6 +63,8 @@ export class LoginService {
       },
     });
 
+    delete user.password;
+
     return { user, token };
   }
 }
